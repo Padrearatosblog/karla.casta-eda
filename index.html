@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Karla Castañeda | Quiromasaje, Bienestar y Belleza</title>
+  <meta name="description" content="Quiromasaje, masaje deportivo, osteopatía, bienestar y belleza. Reserva tu cita con Karla Castañeda por WhatsApp." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Karla Castañeda | Quiromasaje, Bienestar y Belleza" />
+  <meta property="og:description" content="Masajes y tratamientos personalizados. Bienestar, reductores, belleza y depilación." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      /* Paleta A: Nude + Champagne (elegante) */
+      --bg: #F7F3EF;
+      --paper: #FFFFFF;
+      --ink: #1F1F1F;
+      --muted: rgba(31,31,31,.68);
+
+      --accent: #C6A46A;   /* champagne */
+      --accent2: #E7D6BE;  /* nude */
+      --line: rgba(198,164,106,.22);
+
+      --shadow: 0 18px 55px rgba(0,0,0,.10);
+      --shadow2: 0 12px 34px rgba(0,0,0,.08);
+
+      --r: 22px;
+      --r2: 18px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 550px at 15% -10%, rgba(198,164,106,.18), transparent 55%),
+        radial-gradient(900px 550px at 85% 10%, rgba(231,214,190,.35), transparent 55%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    img{ max-width: 100%; display:block; }
+    button{ font: inherit; }
+
+    .wrap{
+      width: min(var(--max), 92vw);
+      margin: 0 auto;
+    }
+
+    /* Topbar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: rgba(247,243,239,.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(198,164,106,.16);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .logo{
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      background:
+        radial-gradient(14px 14px at 28% 30%, rgba(255,255,255,.55), transparent 60%),
+        linear-gradient(135deg, var(--accent), #B89254);
+      box-shadow: var(--shadow2);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute;
+      inset:-45%;
+      background: linear-gradient(60deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%);
+      transform: rotate(15deg) translateX(-40%);
+      animation: sheen 6s linear infinite;
+    }
+    @keyframes sheen{
+      0%{ transform: rotate(15deg) translateX(-40%); opacity: 0; }
+      10%{ opacity: .75; }
+      55%{ transform: rotate(15deg) translateX(40%); opacity: .35; }
+      100%{ transform: rotate(15deg) translateX(40%); opacity: 0; }
+    }
+
+    .brand strong{
+      display:block;
+      font-weight: 850;
+      letter-spacing: -.25px;
+      line-height: 1.0;
+    }
+    .brand span{
+      display:block;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 3px;
+    }
+
+    .links{
+      display:flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content:center;
+    }
+    .links a{
+      padding: 9px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+      font-size: 14px;
+    }
+    .links a:hover{
+      background: rgba(198,164,106,.10);
+      border-color: rgba(198,164,106,.20);
+      color: var(--ink);
+    }
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:flex-end;
+      min-width: 240px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border-radius: 14px;
+      padding: 10px 14px;
+      border: 1px solid rgba(198,164,106,.22);
+      background: rgba(255,255,255,.75);
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      transition: transform .15s ease, filter .2s ease, background .2s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .btn:active{ transform: translateY(0); }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), #B89254);
+      color: #fff;
+      border-color: rgba(198,164,106,.55);
+      box-shadow: 0 18px 50px rgba(198,164,106,.20), var(--shadow2);
+      font-weight: 800;
+    }
+
+    /* Generic */
+    .card{
+      border-radius: var(--r);
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(198,164,106,.18);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(198,164,106,.18);
+      background: rgba(255,255,255,.72);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width: 9px; height: 9px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(198,164,106,.15);
+    }
+
+    section{ padding: 34px 0; }
+
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .sectionTitle h2{
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -.2px;
+    }
+    .sectionTitle p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 74ch;
+      line-height: 1.55;
+      font-size: 14.5px;
+    }
+
+    /* Hero */
+    main.hero{ padding: 26px 0 28px; }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .heroLeft{ padding: 26px 22px 22px; }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.04;
+      letter-spacing: -0.8px;
+    }
+    .sub{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 60ch;
+    }
+    .heroCTA{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .stats{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .stat{
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(198,164,106,.18);
+      background: rgba(198,164,106,.06);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .stat b{ color: var(--ink); font-weight: 850; }
+
+    .heroPhoto{
+      height: 100%;
+      min-height: 410px;
+      position: relative;
+      background: #eae2d7;
+    }
+    .heroPhoto img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .badge{
+      position:absolute;
+      left: 14px;
+      bottom: 14px;
+      right: 14px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      background: rgba(255,255,255,.90);
+      border: 1px solid rgba(198,164,106,.18);
+      border-radius: 16px;
+      padding: 12px 12px;
+      box-shadow: var(--shadow2);
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+    .check{
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: rgba(198,164,106,.14);
+      border: 1px solid rgba(198,164,106,.20);
+      color: #6f5632;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+
+    /* About */
+    .aboutGrid{
+      display:grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .aboutPhoto{
+      border-radius: var(--r);
+      overflow:hidden;
+      border: 1px solid rgba(198,164,106,.18);
+      box-shadow: var(--shadow);
+      background: #eee;
+      min-height: 340px;
+    }
+    .aboutPhoto img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+    .aboutText{
+      padding: 22px;
+    }
+    .aboutText h3{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .aboutText p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .listLine{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(198,164,106,.18);
+      background: rgba(198,164,106,.06);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .listLine b{ color: var(--ink); }
+
+    /* Services tabs */
+    .tabs{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .tab{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(198,164,106,.18);
+      background: rgba(255,255,255,.75);
+      color: var(--muted);
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, transform .15s ease;
+      font-weight: 800;
+      font-size: 13.5px;
+    }
+    .tab:hover{ transform: translateY(-1px); }
+    .tab.active{
+      background: linear-gradient(135deg, var(--accent), #B89254);
+      color: #fff;
+      border-color: rgba(198,164,106,.55);
+      box-shadow: 0 16px 40px rgba(198,164,106,.20);
+    }
+    .catGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .catCard{ padding: 18px; }
+    .catCard h3{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 15px;
+    }
+    .hint{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(198,164,106,.18);
+      background: rgba(198,164,106,.06);
+      color: rgba(31,31,31,.75);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+    .hint b{ color: var(--ink); }
+
+    .catImg{
+      border-radius: var(--r);
+      overflow:hidden;
+      border: 1px solid rgba(198,164,106,.18);
+      box-shadow: var(--shadow);
+      background: #eee;
+      min-height: 340px;
+    }
+    .catImg img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Products CTA */
+    .cta{ padding-top: 8px; }
+    .ctaCard{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 16px;
+      align-items: stretch;
+      padding: 18px;
+    }
+    .ctaText{ padding: 10px 8px 10px 10px; }
+    .ctaText h3{
+      margin: 10px 0 10px;
+      font-size: 22px;
+      letter-spacing: -.3px;
+    }
+    .ctaText p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+      max-width: 70ch;
+    }
+    .ctaMini{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(198,164,106,.18);
+      background: rgba(198,164,106,.06);
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .ctaImg{
+      border-radius: var(--r);
+      overflow:hidden;
+      border: 1px solid rgba(198,164,106,.18);
+      box-shadow: var(--shadow);
+      min-height: 320px;
+      background: #eee;
+    }
+    .ctaImg img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+
+    /* Contact */
+    footer{ padding: 10px 0 34px; }
+    .contactBar{
+      border-radius: var(--r);
+      border: 1px solid rgba(198,164,106,.20);
+      background: linear-gradient(135deg, var(--accent), #B89254);
+      color: #fff;
+      box-shadow: 0 20px 70px rgba(198,164,106,.22);
+      padding: 16px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .contactItem{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+    }
+    .icon{
+      width: 42px; height: 42px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.14);
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .fine{
+      margin-top: 14px;
+      color: rgba(31,31,31,.55);
+      font-size: 13px;
+      line-height: 1.5;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(198,164,106,.18);
+      padding-top: 14px;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.on{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .links{ display:none; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .heroPhoto{ min-height: 320px; }
+      .aboutGrid{ grid-template-columns: 1fr; }
+      .catGrid{ grid-template-columns: 1fr; }
+      .ctaCard{ grid-template-columns: 1fr; }
+      .actions{ min-width: unset; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="wrap">
+      <nav class="nav" aria-label="Navegación principal">
+        <a class="brand" href="#inicio" aria-label="Ir al inicio">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <strong>Karla Castañeda</strong>
+            <span>Quiromasaje · Bienestar · Belleza</span>
+          </div>
+        </a>
+
+        <div class="links" aria-label="Secciones">
+          <a href="#mi-trabajo">Mi trabajo</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#productos">Productos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+
+        <div class="actions">
+          <a class="btn" id="btnIg" href="https://instagram.com/aleka_masajesybelleza" target="_blank" rel="noopener">
+            Instagram ↗
+          </a>
+          <a class="btn btn-primary" id="btnWhats" href="#" rel="noopener">
+            Reservar por WhatsApp →
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="inicio" class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <section class="card heroLeft reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            Atención cercana · Experiencia cuidada · Tratamientos personalizados
+          </div>
+
+          <h1>
+            Un momento para ti.
+            <span style="color:#B89254;">Bienestar que se nota.</span>
+          </h1>
+
+          <p class="sub">
+            Estoy aquí para ayudarte a liberar tensión, recuperar equilibrio y sentirte bien contigo.
+            Cada sesión se adapta a lo que necesitas hoy: relajación profunda, descarga muscular o cuidado estético.
+          </p>
+
+          <div class="heroCTA">
+            <a class="btn btn-primary" href="#contacto">Pedir cita ahora →</a>
+            <a class="btn" href="#servicios">Ver tratamientos ↓</a>
+          </div>
+
+          <div class="stats" aria-label="Beneficios">
+            <div class="stat"><b>Personalizado</b> según tu objetivo</div>
+            <div class="stat"><b>Ambiente</b> cómodo y elegante</div>
+            <div class="stat"><b>Enfoque</b> profesional y humano</div>
+          </div>
+        </section>
+
+        <aside class="card reveal">
+          <div class="heroPhoto">
+            <img src="img/karla-hero.jpg" alt="Karla Castañeda - Quiromasaje" />
+            <div class="badge">
+              <div class="check" aria-hidden="true">✓</div>
+              <div>
+                Reserva rápida por WhatsApp. Cuéntame qué necesitas y te recomiendo el tratamiento ideal.
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- MI TRABAJO -->
+  <section id="mi-trabajo">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Mi trabajo</h2>
+          <p>
+            Tratamientos enfocados en bienestar, recuperación y estética. Mi objetivo es que salgas mejor de lo que llegaste:
+            más ligera, más calmada y con sensación de cuidado real.
+          </p>
+        </div>
+        <div class="pill">
+          <span class="dot" aria-hidden="true"></span>
+          Profesional · Cercano · Eficaz
+        </div>
+      </div>
+
+      <div class="aboutGrid">
+        <div class="aboutPhoto reveal">
+          <img src="img/masaje-camilla.jpg" alt="Espacio de masaje y cuidado" />
+        </div>
+
+        <div class="card aboutText reveal">
+          <h3>Formación y especialidades</h3>
+          <p>
+            Soy técnico en <b>quiromasaje</b>, <b>masaje deportivo</b>, <b>osteopatía</b> y <b>terapias alternativas</b>.
+            Además, me especializo en <b>naturopatía</b> y en tratamientos de belleza para completar tu bienestar.
+          </p>
+
+          <div class="listLine">
+            <b>También realizo:</b> lifting y tinte de pestañas, extensiones pelo a pelo, tratamientos faciales,
+            manicura semipermanente, uñas de gel y polygel.
+          </div>
+
+          <p style="margin-top: 14px;">
+            Mi motivación nace del amor por los masajes y el bienestar, y de querer que mi trabajo sea un propósito de vida:
+            ayudarte a liberar estrés, recuperar equilibrio y disfrutar un momento solo para ti.
+          </p>
+
+          <div class="heroCTA" style="margin-top: 6px;">
+            <a class="btn btn-primary" href="#contacto">Quiero mi cita →</a>
+            <a class="btn" href="#servicios">Ver servicios ↓</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Masajes y tratamientos personalizados</h2>
+          <p>
+            Cada masaje se adapta a tus necesidades para ofrecerte una experiencia única.
+            Selecciona una categoría para ver opciones y recomendaciones.
+          </p>
+        </div>
+      </div>
+
+      <div class="tabs reveal" role="tablist" aria-label="Categorías de servicios">
+        <button class="tab active" data-tab="bienestar" role="tab" aria-selected="true">Bienestar</button>
+        <button class="tab" data-tab="reductores" role="tab" aria-selected="false">Reductores</button>
+        <button class="tab" data-tab="belleza" role="tab" aria-selected="false">Belleza</button>
+        <button class="tab" data-tab="depilacion" role="tab" aria-selected="false">Depilación</button>
+      </div>
+
+      <div class="catGrid">
+        <div class="card catCard reveal" id="tabContent"></div>
+        <div class="catImg reveal">
+          <img id="tabImage" src="img/bienestar.jpg" alt="Tratamientos de bienestar" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section id="productos" class="cta">
+    <div class="wrap">
+      <div class="card ctaCard reveal">
+        <div class="ctaText">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            Cuidado en casa para prolongar resultados
+          </div>
+
+          <h3>¿Quieres mantener los resultados por más tiempo?</h3>
+          <p>
+            Cuento con una línea exclusiva de productos ideales para continuar el cuidado en casa:
+            <b>reafirmantes</b>, <b>reductores</b>, <b>anticelulíticos</b> e <b>hidratantes</b>.
+            Te recomiendo lo que mejor se ajuste a tu piel y a tu objetivo.
+          </p>
+
+          <div class="ctaMini">
+            Recomendación: combinar sesión + rutina en casa ayuda a mantener firmeza, hidratación y mejor textura.
+          </div>
+
+          <div class="heroCTA" style="margin-top: 14px;">
+            <a class="btn btn-primary" href="#contacto">Consultar por WhatsApp →</a>
+            <a class="btn" href="#servicios">Volver a servicios ↑</a>
+          </div>
+        </div>
+
+        <div class="ctaImg">
+          <img src="img/depilacion.jpg" alt="Cuidado corporal y bienestar" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <footer id="contacto">
+    <div class="wrap">
+      <div class="contactBar reveal">
+        <div class="contactItem">
+          <div class="icon" aria-hidden="true">📞</div>
+          <div>
+            <div style="opacity:.9; font-size: 13px;">Teléfono / WhatsApp</div>
+            <div style="font-size: 18px; letter-spacing:.2px;">611 431 885</div>
+          </div>
+        </div>
+
+        <div class="contactItem">
+          <div class="icon" aria-hidden="true">📷</div>
+          <div>
+            <div style="opacity:.9; font-size: 13px;">Instagram</div>
+            <div style="font-size: 18px; letter-spacing:.2px;">@aleka_masajesybelleza</div>
+          </div>
+        </div>
+
+        <div class="contactItem" style="gap: 10px;">
+          <a class="btn" href="https://instagram.com/aleka_masajesybelleza" target="_blank" rel="noopener"
+             style="border-color: rgba(255,255,255,.32); background: rgba(255,255,255,.14); color:#fff;">
+            Ver Instagram ↗
+          </a>
+          <a class="btn btn-primary" href="#" id="btnWhats2" style="border-color: rgba(255,255,255,.35);">
+            Reservar ahora →
+          </a>
+        </div>
+      </div>
+
+      <div class="fine">
+        <div>© <span id="year"></span> Karla Castañeda · Quiromasaje · Bienestar · Belleza</div>
+        <div>* Los tratamientos se ajustan según cada persona y necesidad.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ==== CONFIG ====
+    const PHONE_E164 = "34611431885"; // +34 611 431 885 (sin + ni espacios)
+    const IG_URL = "https://instagram.com/aleka_masajesybelleza";
+    const WA_TEXT = encodeURIComponent("Hola Karla, me gustaría reservar una cita. ¿Qué disponibilidad tienes esta semana?");
+
+    const waLink = `https://wa.me/${PHONE_E164}?text=${WA_TEXT}`;
+    document.getElementById("btnWhats").href = waLink;
+    document.getElementById("btnWhats2").href = waLink;
+    document.getElementById("btnIg").href = IG_URL;
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ==== Reveal ====
+    const reveals = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add("on");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // ==== Smooth scroll ====
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (ev) => {
+        const id = a.getAttribute("href");
+        if(!id || id === "#") return;
+        const target = document.querySelector(id);
+        if(!target) return;
+        ev.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    // ==== Tabs ====
+    const data = {
+      bienestar: {
+        title: "Bienestar",
+        img: "img/bienestar.jpg",
+        alt: "Masaje de bienestar",
+        items: [
+          "Masaje relajante con aceites esenciales",
+          "Masaje facial japonés",
+          "Masaje cráneo-facial",
+          "Masaje descontracturante",
+          "Masaje para piernas cansadas",
+          "Masaje con piedras calientes",
+          "Masaje de pies"
+        ],
+        note: "Perfecto si buscas soltar tensión, desconectar y recuperar energía."
+      },
+      reductores: {
+        title: "Reductores",
+        img: "img/reductores.jpg",
+        alt: "Tratamientos reductores y maderoterapia",
+        items: [
+          "Drenaje linfático y circulatorio",
+          "Masaje anticelulítico y drenaje brasileño",
+          "Maderoterapia moldeadora"
+        ],
+        note: "Enfoque en circulación, textura y definición. Ideal con plan de sesiones."
+      },
+      belleza: {
+        title: "Belleza",
+        img: "img/belleza.jpg",
+        alt: "Tratamientos de belleza",
+        items: [
+          "Lifting y tinte de pestañas",
+          "Extensión de pestañas pelo a pelo",
+          "Depilación de cejas con pinza",
+          "Diseño de cejas con henna",
+          "Manicura",
+          "Esmaltado semipermanente",
+          "Uñas de gel / polygel"
+        ],
+        note: "Acabados finos y naturales, cuidando siempre la salud de pestañas y uñas."
+      },
+      depilacion: {
+        title: "Depilación",
+        img: "img/depilacion.jpg",
+        alt: "Depilación facial y corporal",
+        items: [
+          "Depilación facial con cera caliente (labio y mentón)",
+          "Depilación corporal con cera templada"
+        ],
+        note: "Piel más suave y limpia. Te indico cuidados post-tratamiento para evitar irritación."
+      }
+    };
+
+    const tabs = document.querySelectorAll(".tab");
+    const content = document.getElementById("tabContent");
+    const tabImage = document.getElementById("tabImage");
+
+    function renderTab(key){
+      const d = data[key];
+
+      content.innerHTML = `
+        <h3>${d.title}</h3>
+        <ul class="bullets">
+          ${d.items.map(i => `<li>${i}</li>`).join("")}
+        </ul>
+        <div class="hint">
+          <b>Recomendación:</b> ${d.note}
+        </div>
+        <div class="heroCTA" style="margin-top:14px;">
+          <a class="btn btn-primary" href="${waLink}">Reservar por WhatsApp →</a>
+          <a class="btn" href="#mi-trabajo">Conocer más ↑</a>
+        </div>
+      `;
+
+      tabImage.src = d.img;
+      tabImage.alt = d.alt;
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener("click", () => {
+        tabs.forEach(x => { x.classList.remove("active"); x.setAttribute("aria-selected","false"); });
+        t.classList.add("active");
+        t.setAttribute("aria-selected","true");
+        renderTab(t.dataset.tab);
+      });
+    });
+
+    // Inicial
+    renderTab("bienestar");
+  </script>
+</body>
+</html>
