@@ -529,6 +529,83 @@
       .ctaCard{ grid-template-columns: 1fr; }
       .actions{ min-width: unset; }
     }
+
+    .logoImg{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  object-fit: cover;
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(198,164,106,.22);
+  box-shadow: var(--shadow2);
+}
+.pricesGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.priceCard{
+  padding: 18px;
+}
+
+.priceCard h3{
+  margin: 0 0 12px;
+  font-size: 18px;
+  letter-spacing: -.2px;
+}
+
+.priceRow{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(198,164,106,.22);
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+.priceRow b{
+  color: var(--ink);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.noteBox{
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(198,164,106,.18);
+  background: rgba(198,164,106,.06);
+  color: rgba(31,31,31,.75);
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.priceBtn{
+  width: 100%;
+  margin-top: 14px;
+}
+
+.flyerBox{
+  margin-top: 16px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-radius: var(--r);
+  border: 1px solid rgba(198,164,106,.18);
+  background: rgba(255,255,255,.70);
+  box-shadow: var(--shadow2);
+}
+
+@media (max-width: 980px){
+  .pricesGrid{ grid-template-columns: 1fr; }
+}
+
   </style>
 </head>
 
@@ -538,7 +615,7 @@
     <div class="wrap">
       <nav class="nav" aria-label="Navegación principal">
         <a class="brand" href="#inicio" aria-label="Ir al inicio">
-          <div class="logo" aria-hidden="true"></div>
+          <img class="logoImg" src="img/logo.jpg" alt="KC Quiromasaje y Belleza" />
           <div>
             <strong>Karla Castañeda</strong>
             <span>Quiromasaje · Bienestar · Belleza</span>
@@ -548,12 +625,13 @@
         <div class="links" aria-label="Secciones">
           <a href="#mi-trabajo">Mi trabajo</a>
           <a href="#servicios">Servicios</a>
+          <a href="#precios">Precios</a>
           <a href="#productos">Productos</a>
           <a href="#contacto">Contacto</a>
         </div>
 
         <div class="actions">
-          <a class="btn" id="btnIg" href="https://instagram.com/aleka_masajesybelleza" target="_blank" rel="noopener">
+          <a class="btn" id="btnIg" href="https://instagram.com/karla.masajesybelleza" target="_blank" rel="noopener">
             Instagram ↗
           </a>
           <a class="btn btn-primary" id="btnWhats" href="#" rel="noopener">
@@ -687,6 +765,74 @@
       </div>
     </div>
   </section>
+  
+<!-- PRECIOS -->
+<section id="precios">
+  <div class="wrap">
+    <div class="sectionTitle reveal">
+      <div>
+        <h2>Precios</h2>
+        <p>
+          Tarifas claras y sesiones adaptadas a lo que necesitas. Si no sabes cuál elegir,
+          te asesoro por WhatsApp y te recomiendo la mejor opción.
+        </p>
+      </div>
+      <div class="pill">
+        <span class="dot" aria-hidden="true"></span>
+        Reserva fácil por WhatsApp
+      </div>
+    </div>
+
+    <div class="pricesGrid">
+      <!-- MASAJES -->
+      <div class="card priceCard reveal">
+        <h3>Masajes</h3>
+        <div class="priceRow"><span>Piernas cansadas (45')</span><b>37€</b></div>
+        <div class="priceRow"><span>Masaje facial japonés (45')</span><b>40€</b></div>
+        <div class="priceRow"><span>Descontracturante (60')</span><b>42€</b></div>
+        <div class="priceRow"><span>Relajante con esencias (60')</span><b>45€</b></div>
+        <div class="priceRow"><span>Piedras calientes (60')</span><b>50€</b></div>
+
+        <a class="btn btn-primary priceBtn" id="waMasajes" href="#">Reservar masaje →</a>
+      </div>
+
+      <!-- MADEROTERAPIA -->
+      <div class="card priceCard reveal">
+        <h3>Maderoterapia</h3>
+        <div class="priceRow"><span>3 sesiones (45')</span><b>115€</b></div>
+        <div class="priceRow"><span>6 sesiones (45')</span><b>220€</b></div>
+        <div class="priceRow"><span>9 sesiones (45')</span><b>320€</b></div>
+
+        <div class="noteBox">
+          <b>Zonas:</b> (una zona a elegir) piernas y glúteos <span style="opacity:.7;">o</span> abdomen y cintura.
+        </div>
+
+        <a class="btn btn-primary priceBtn" id="waMadero" href="#">Consultar maderoterapia →</a>
+      </div>
+
+      <!-- BELLEZA -->
+      <div class="card priceCard reveal">
+        <h3>Belleza</h3>
+        <div class="priceRow"><span>Esmaltado semipermanente</span><b>26€</b></div>
+        <div class="priceRow"><span>Lifting de pestañas + tinte</span><b>40€</b></div>
+        <div class="priceRow"><span>Depilación con cera</span><b>A consultar</b></div>
+
+        <a class="btn btn-primary priceBtn" id="waBelleza" href="#">Reservar belleza →</a>
+      </div>
+    </div>
+
+    <!-- opcional: mostrar flyer como imagen -->
+    <div class="flyerBox reveal">
+      <div class="flyerText">
+        <h3 style="margin:0 0 8px;">¿Quieres el flyer?</h3>
+        <p style="margin:0; color: var(--muted); line-height:1.6;">
+          Puedes guardar esta imagen con todos los precios para compartirla.
+        </p>
+      </div>
+      <a class="btn" href="img/precios.jpg" target="_blank" rel="noopener">Ver flyer ↗</a>
+    </div>
+  </div>
+</section>
 
   <!-- PRODUCTOS -->
   <section id="productos" class="cta">
@@ -738,12 +884,12 @@
           <div class="icon" aria-hidden="true">📷</div>
           <div>
             <div style="opacity:.9; font-size: 13px;">Instagram</div>
-            <div style="font-size: 18px; letter-spacing:.2px;">@aleka_masajesybelleza</div>
+            <div style="font-size: 18px; letter-spacing:.2px;">@Karla.masajesybelleza</div>
           </div>
         </div>
 
         <div class="contactItem" style="gap: 10px;">
-          <a class="btn" href="https://instagram.com/aleka_masajesybelleza" target="_blank" rel="noopener"
+          <a class="btn" href="https://instagram.com/karla.masajesybelleza" target="_blank" rel="noopener"
              style="border-color: rgba(255,255,255,.32); background: rgba(255,255,255,.14); color:#fff;">
             Ver Instagram ↗
           </a>
@@ -761,17 +907,30 @@
   </footer>
 
   <script>
-    // ==== CONFIG ====
-    const PHONE_E164 = "34611431885"; // +34 611 431 885 (sin + ni espacios)
-    const IG_URL = "https://instagram.com/aleka_masajesybelleza";
-    const WA_TEXT = encodeURIComponent("Hola Karla, me gustaría reservar una cita. ¿Qué disponibilidad tienes esta semana?");
+// ==== CONFIG ====
+const PHONE_E164 = "34611431885";
+const IG_URL = "https://instagram.com/karla.masajesybelleza";
+const WA_TEXT = encodeURIComponent("Hola Karla, me gustaría reservar una cita. ¿Qué disponibilidad tienes esta semana?");
 
-    const waLink = `https://wa.me/${PHONE_E164}?text=${WA_TEXT}`;
-    document.getElementById("btnWhats").href = waLink;
-    document.getElementById("btnWhats2").href = waLink;
-    document.getElementById("btnIg").href = IG_URL;
+const waLink = `https://wa.me/${PHONE_E164}?text=${WA_TEXT}`;
+document.getElementById("btnWhats").href = waLink;
+document.getElementById("btnWhats2").href = waLink;
+document.getElementById("btnIg").href = IG_URL;
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+// Links de WhatsApp por categoría (mensajes diferentes)
+const waMasajes = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent("Hola Karla, quiero reservar un masaje. ¿Qué disponibilidad tienes?")}`;
+const waMadero  = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent("Hola Karla, quiero información sobre maderoterapia (3/6/9 sesiones). ¿Qué me recomiendas?")}`;
+const waBelleza = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent("Hola Karla, quiero reservar un servicio de belleza (semipermanente / lifting). ¿Disponibilidad?")}`;
+
+const a1 = document.getElementById("waMasajes");
+const a2 = document.getElementById("waMadero");
+const a3 = document.getElementById("waBelleza");
+if(a1) a1.href = waMasajes;
+if(a2) a2.href = waMadero;
+if(a3) a3.href = waBelleza;
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
 
     // ==== Reveal ====
     const reveals = document.querySelectorAll(".reveal");
@@ -878,16 +1037,19 @@
     }
 
     tabs.forEach(t => {
-      t.addEventListener("click", () => {
-        tabs.forEach(x => { x.classList.remove("active"); x.setAttribute("aria-selected","false"); });
-        t.classList.add("active");
-        t.setAttribute("aria-selected","true");
-        renderTab(t.dataset.tab);
-      });
-    });
+  t.addEventListener("click", () => {
+    tabs.forEach(x => { x.classList.remove("active"); x.setAttribute("aria-selected","false"); });
+    t.classList.add("active");
+    t.setAttribute("aria-selected","true");
+    renderTab(t.dataset.tab);
+  });
+});
+
+    
 
     // Inicial
     renderTab("bienestar");
+  
   </script>
 </body>
 </html>
