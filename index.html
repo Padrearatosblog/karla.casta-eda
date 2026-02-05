@@ -628,6 +628,51 @@
       .flyerBox{ flex-direction: column; align-items: stretch; }
       .flyerBox .btn{ width: 100%; }
     }
+
+    /* ===== PRECIOS: FIX VISUAL EN MÓVIL ===== */
+@media (max-width: 640px){
+
+  .pricesGrid{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .priceCard{
+    padding: 20px 18px;
+  }
+
+  .priceCard h3{
+    font-size: 20px;
+    margin-bottom: 14px;
+    text-align: left;
+  }
+
+  .priceRow{
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  .priceRow span{
+    max-width: 70%;
+    line-height: 1.4;
+  }
+
+  .priceRow b{
+    font-size: 16px;
+  }
+
+  .noteBox{
+    font-size: 14px;
+    margin-top: 14px;
+  }
+
+  .priceBtn{
+    margin-top: 18px;
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
   </style>
 </head>
 
