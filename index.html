@@ -879,6 +879,14 @@
             <div style="font-size: 18px; letter-spacing:.2px;">611 431 885</div>
           </div>
         </div>
+          <div class="contactItem">
+  <div class="icon" aria-hidden="true">📍</div>
+  <div>
+    <div class="op90 small">Dirección</div>
+    <div class="big">C/ Bidemokarte 1, Huarte</div>
+    <div class="op90 small">(dentro de la peluquería Ilea)</div>
+    
+</div>
 
         <div class="contactItem">
           <div class="icon" aria-hidden="true">📷</div>
@@ -896,6 +904,8 @@
           <a class="btn btn-primary" href="#" id="btnWhats2" style="border-color: rgba(255,255,255,.35);">
             Reservar ahora →
           </a>
+          <a class="btn btnGlass" id="btnMaps" href="#" target="_blank" rel="noopener">Cómo llegar ↗</a>
+
         </div>
       </div>
 
@@ -908,6 +918,7 @@
 
   <script>
 // ==== CONFIG ====
+
 const PHONE_E164 = "34611431885";
 const IG_URL = "https://instagram.com/karla.masajesybelleza";
 const WA_TEXT = encodeURIComponent("Hola Karla, me gustaría reservar una cita. ¿Qué disponibilidad tienes esta semana?");
@@ -916,6 +927,7 @@ const waLink = `https://wa.me/${PHONE_E164}?text=${WA_TEXT}`;
 document.getElementById("btnWhats").href = waLink;
 document.getElementById("btnWhats2").href = waLink;
 document.getElementById("btnIg").href = IG_URL;
+
 
 // Links de WhatsApp por categoría (mensajes diferentes)
 const waMasajes = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent("Hola Karla, quiero reservar un masaje. ¿Qué disponibilidad tienes?")}`;
@@ -1049,7 +1061,10 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
     // Inicial
     renderTab("bienestar");
-  
+  const MAPS_URL = "https://www.google.com/maps?q=" + encodeURIComponent("C/ Bidemokarte 1, Huarte, Peluquería Ilea");
+  document.getElementById("btnMaps").href = "https://www.google.com/maps?q=" + encodeURIComponent("C/ Bidemokarte 1, Huarte, Peluquería Ilea");
+
+
   </script>
 </body>
 </html>
