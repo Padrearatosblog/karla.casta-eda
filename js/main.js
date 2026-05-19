@@ -28,13 +28,17 @@ const waMasajes = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent(
   "Hola Karla, quiero reservar un masaje. ¿Qué disponibilidad tienes?"
 )}`;
 const waMadero = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent(
-  "Hola Karla, quiero información sobre maderoterapia (3/6/9 sesiones). ¿Qué me recomiendas?"
+  "Hola Karla, quiero información sobre maderoterapia (1/3/6 sesiones). ¿Qué me recomiendas?"
+)}`;
+const waHolistico = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent(
+  "Hola Karla, quiero reservar un ritual holístico. ¿Qué disponibilidad tienes?"
 )}`;
 const waBelleza = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent(
   "Hola Karla, quiero reservar un servicio de belleza (semipermanente / lifting). ¿Disponibilidad?"
 )}`;
 
 setHref("waMasajes", waMasajes);
+setHref("waHolistico", waHolistico);
 setHref("waMadero", waMadero);
 setHref("waBelleza", waBelleza);
 

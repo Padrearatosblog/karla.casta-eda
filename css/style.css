@@ -524,6 +524,21 @@
       .pricesGrid{ grid-template-columns: 1fr; }
     }
 
+    @media (max-width: 700px){
+      .nav{ flex-wrap: wrap; }
+      .brand{ min-width: 0; }
+      .actions{
+        width: 100%;
+        justify-content: stretch;
+      }
+      .actions .btn{
+        flex: 1 1 0;
+        min-width: 0;
+        white-space: normal;
+        text-align: center;
+      }
+    }
+
     /* Imágenes/Logo */
     .logoImg{
       width: 44px;
@@ -577,6 +592,28 @@
       width: 100%;
       margin-top: 14px;
     }
+    .flyerPreview{
+      margin-top: 18px;
+      border-radius: var(--r);
+      border: 1px solid rgba(198,164,106,.18);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .flyerPreview a{
+      display:block;
+      border-radius: 18px;
+      overflow:hidden;
+      background: #fff;
+      border: 1px solid rgba(198,164,106,.16);
+    }
+    .flyerPreview img{
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      height: auto;
+      border-radius: 18px;
+    }
     .flyerBox{
       margin-top: 16px;
       display:flex;
@@ -611,6 +648,9 @@
         justify-content: center;
       }
       .actions{ min-width: unset; }
+      .flyerPreview{ padding: 8px; }
+      .flyerPreview a,
+      .flyerPreview img{ border-radius: 14px; }
       .flyerBox{ flex-direction: column; align-items: stretch; }
       .flyerBox .btn{ width: 100%; }
     }
