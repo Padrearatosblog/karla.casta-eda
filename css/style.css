@@ -1062,7 +1062,8 @@ h1 span{
   --light-y: 50%;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  --mobile-lift: 0px;
+  transform: translateY(var(--mobile-lift)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transition: transform .18s ease-out, box-shadow .3s ease;
   will-change: transform;
 }
@@ -1116,7 +1117,7 @@ h1 span{
   box-shadow: 0 28px 68px rgba(43,28,23,.19);
 }
 
-@media (prefers-reduced-motion: reduce), (hover: none){
+@media (prefers-reduced-motion: reduce){
   .tilt3d,
   .tilt3d:hover,
   .priceCard:hover,
@@ -1185,4 +1186,75 @@ h1 span{
   }
 
   .aboutInset span{ font-size: 8px; }
+}
+
+/* Profundidad visible y movimiento autónomo en móvil */
+@media (max-width: 700px) and (prefers-reduced-motion: no-preference){
+  .heroGrid,
+  .aboutGrid,
+  .catGrid{
+    perspective: 760px;
+    perspective-origin: 50% 42%;
+  }
+
+  .tilt3d{
+    transition: transform .16s linear, box-shadow .3s ease;
+    box-shadow:
+      0 28px 55px rgba(43,28,23,.22),
+      -10px 12px 0 rgba(168,111,76,.08),
+      10px -10px 0 rgba(245,235,221,.42);
+  }
+
+  .tilt3d::before{
+    opacity: .72;
+    background:
+      radial-gradient(circle at var(--light-x) var(--light-y), rgba(255,248,239,.32), transparent 34%),
+      linear-gradient(125deg, transparent 38%, rgba(255,255,255,.12) 50%, transparent 62%);
+  }
+
+  .heroPhoto .badge{
+    transform: translateZ(46px) translateY(-2px);
+    box-shadow: 0 22px 42px rgba(43,28,23,.30);
+  }
+
+  .aboutInset{
+    animation: mobileFloat 4.2s ease-in-out infinite;
+    box-shadow:
+      0 22px 45px rgba(43,28,23,.34),
+      0 0 0 1px rgba(255,255,255,.55);
+  }
+
+  .priceCard:nth-child(odd){
+    transform: perspective(760px) rotateY(2.2deg) translateX(2px);
+  }
+
+  .priceCard:nth-child(even){
+    transform: perspective(760px) rotateY(-2.2deg) translateX(-2px);
+  }
+
+  .btn-primary{
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after{
+    content: "";
+    position: absolute;
+    inset: -60% -30%;
+    background: linear-gradient(110deg, transparent 38%, rgba(255,255,255,.28) 49%, transparent 60%);
+    transform: translateX(-65%) rotate(4deg);
+    animation: mobileSheen 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes mobileFloat{
+  0%, 100%{ transform: translateZ(42px) translateY(0) rotate(2deg); }
+  50%{ transform: translateZ(56px) translateY(-9px) rotate(-1deg); }
+}
+
+@keyframes mobileSheen{
+  0%, 68%{ transform: translateX(-65%) rotate(4deg); opacity: 0; }
+  76%{ opacity: 1; }
+  92%, 100%{ transform: translateX(65%) rotate(4deg); opacity: 0; }
 }

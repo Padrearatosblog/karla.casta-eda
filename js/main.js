@@ -182,8 +182,9 @@ tabs.forEach((t) => {
 renderTab("bienestar");
 
 // Profundidad 3D sutil en dispositivos con puntero preciso.
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const canTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches
-  && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  && !prefersReducedMotion;
 
 if (canTilt) {
   document.querySelectorAll(".tilt3d").forEach((element) => {
@@ -209,4 +210,36 @@ if (canTilt) {
       element.style.setProperty("--light-y", "50%");
     });
   });
+}
+
+// En móvil, la profundidad responde al scroll en lugar de depender del cursor.
+if (!canTilt && !prefersReducedMotion) {
+  const mobileTiltElements = [...document.querySelectorAll(".tilt3d")];
+  let tiltFrame = null;
+
+  const updateMobileDepth = () => {
+    const viewportCenter = window.innerHeight / 2;
+
+    mobileTiltElements.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      const elementCenter = rect.top + rect.height / 2;
+      const distance = Math.max(-1, Math.min(1, (elementCenter - viewportCenter) / viewportCenter));
+
+      element.style.setProperty("--tilt-x", `${(-distance * 7).toFixed(2)}deg`);
+      element.style.setProperty("--tilt-y", `${(distance * 2.4).toFixed(2)}deg`);
+      element.style.setProperty("--mobile-lift", `${(Math.abs(distance) * -7).toFixed(1)}px`);
+      element.style.setProperty("--light-x", `${(50 + distance * 18).toFixed(1)}%`);
+      element.style.setProperty("--light-y", `${(50 - distance * 22).toFixed(1)}%`);
+    });
+
+    tiltFrame = null;
+  };
+
+  const requestMobileDepth = () => {
+    if (!tiltFrame) tiltFrame = requestAnimationFrame(updateMobileDepth);
+  };
+
+  window.addEventListener("scroll", requestMobileDepth, { passive: true });
+  window.addEventListener("resize", requestMobileDepth);
+  updateMobileDepth();
 }
