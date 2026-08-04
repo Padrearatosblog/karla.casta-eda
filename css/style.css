@@ -1047,3 +1047,86 @@ h1 span{
     gap: 8px;
   }
 }
+
+/* Experiencia 3D sutil y profesional */
+.heroGrid,
+.aboutGrid,
+.catGrid{
+  perspective: 1200px;
+}
+
+.tilt3d{
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --light-x: 50%;
+  --light-y: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform .18s ease-out, box-shadow .3s ease;
+  will-change: transform;
+}
+
+.tilt3d::before{
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--light-x) var(--light-y), rgba(255,248,239,.24), transparent 38%);
+  transition: opacity .25s ease;
+}
+
+.tilt3d:hover{
+  box-shadow: 0 30px 75px rgba(43,28,23,.24);
+}
+
+.tilt3d:hover::before{ opacity: 1; }
+
+.heroPhoto.tilt3d img,
+.aboutPhoto.tilt3d img,
+.catImg.tilt3d img{
+  transform: scale(1.015);
+  transition: transform .45s ease, filter .35s ease;
+}
+
+.heroPhoto.tilt3d:hover img,
+.aboutPhoto.tilt3d:hover img,
+.catImg.tilt3d:hover img{
+  transform: scale(1.055) translateZ(16px);
+}
+
+.heroPhoto .badge{
+  transform: translateZ(38px);
+  box-shadow: 0 18px 44px rgba(43,28,23,.22);
+}
+
+.card,
+.priceCard,
+.catCard{
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.priceCard:hover,
+.catCard:hover{
+  transform: translateY(-7px);
+  border-color: rgba(168,111,76,.34);
+  box-shadow: 0 28px 68px rgba(43,28,23,.19);
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none){
+  .tilt3d,
+  .tilt3d:hover,
+  .priceCard:hover,
+  .catCard:hover{
+    transform: none;
+  }
+
+  .heroPhoto.tilt3d:hover img,
+  .aboutPhoto.tilt3d:hover img,
+  .catImg.tilt3d:hover img{
+    transform: scale(1.015);
+  }
+}

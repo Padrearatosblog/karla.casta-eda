@@ -89,8 +89,8 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 const data = {
   bienestar: {
     title: "Bienestar",
-    img: "img/bienestar-karla.jpeg",
-    alt: "Cabina de masajes y bienestar de Karla Castañeda en Huarte",
+    img: "img/manosmasaje.jpeg",
+    alt: "Masaje profesional para piernas cansadas en Huarte",
     items: [
       "Masaje relajante con aceites esenciales",
       "Masaje facial japonés",
@@ -180,3 +180,33 @@ tabs.forEach((t) => {
 
 // Inicial
 renderTab("bienestar");
+
+// Profundidad 3D sutil en dispositivos con puntero preciso.
+const canTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (canTilt) {
+  document.querySelectorAll(".tilt3d").forEach((element) => {
+    const strength = Number(element.dataset.tilt || 5);
+
+    element.addEventListener("pointermove", (event) => {
+      const rect = element.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      const rotateY = (x - .5) * strength * 2;
+      const rotateX = (.5 - y) * strength * 2;
+
+      element.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
+      element.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
+      element.style.setProperty("--light-x", `${(x * 100).toFixed(1)}%`);
+      element.style.setProperty("--light-y", `${(y * 100).toFixed(1)}%`);
+    });
+
+    element.addEventListener("pointerleave", () => {
+      element.style.setProperty("--tilt-x", "0deg");
+      element.style.setProperty("--tilt-y", "0deg");
+      element.style.setProperty("--light-x", "50%");
+      element.style.setProperty("--light-y", "50%");
+    });
+  });
+}
