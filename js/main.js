@@ -89,8 +89,8 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 const data = {
   bienestar: {
     title: "Bienestar",
-    img: "img/manosmasaje.jpeg",
-    alt: "Masaje profesional para piernas cansadas en Huarte",
+    img: "img/bienestar-karla.jpeg",
+    alt: "Cabina de masajes y bienestar de Karla Castañeda en Huarte",
     items: [
       "Masaje relajante con aceites esenciales",
       "Masaje facial japonés",
