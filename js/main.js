@@ -1,5 +1,6 @@
 // ==== HELPERS ====
 const $id = (id) => document.getElementById(id);
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const setHref = (id, url) => {
   const el = $id(id);
   if (el) el.href = url;
@@ -50,6 +51,92 @@ const MAPS_URL =
   "https://www.google.com/maps?q=" +
   encodeURIComponent("C/ Bidemokarte 1, Huarte, Peluquería Ilea");
 setHref("btnMaps", MAPS_URL);
+
+// ==== Intro de marca + oferta flash ====
+const intro = $id("brandIntro");
+const introSkip = $id("introSkip");
+const offerTeaser = $id("offerTeaser");
+const flashOffer = $id("flashOffer");
+const offerDialog = $id("offerDialog");
+const offerWhatsapp = $id("offerWhatsapp");
+let lastOfferTrigger = null;
+let teaserTimer = null;
+
+const offerText = encodeURIComponent(
+  "Hola Karla, he visto la oferta flash de 5 sesiones de maderoterapia por 199 €. ¿Tienes disponibilidad?"
+);
+if (offerWhatsapp) {
+  offerWhatsapp.href = `https://wa.me/${PHONE_E164}?text=${offerText}`;
+}
+
+const finishIntro = () => {
+  if (!intro || intro.classList.contains("isLeaving")) return;
+  intro.classList.add("isLeaving");
+  document.body.classList.remove("introActive");
+  window.setTimeout(() => {
+    intro.hidden = true;
+    showOfferTeaser();
+  }, 850);
+};
+
+const collapseOfferTeaser = () => {
+  if (!offerTeaser || offerTeaser.classList.contains("isCollapsing")) return;
+  offerTeaser.classList.add("isCollapsing");
+  window.setTimeout(() => {
+    offerTeaser.hidden = true;
+    flashOffer?.classList.add("isVisible");
+  }, prefersReducedMotion ? 100 : 900);
+};
+
+const showOfferTeaser = () => {
+  if (!offerTeaser) {
+    flashOffer?.classList.add("isVisible");
+    return;
+  }
+  offerTeaser.hidden = false;
+  requestAnimationFrame(() => offerTeaser.classList.add("isVisible"));
+  teaserTimer = window.setTimeout(collapseOfferTeaser, prefersReducedMotion ? 900 : 3000);
+};
+
+if (intro) {
+  document.body.classList.add("introActive");
+  const introDuration = prefersReducedMotion ? 700 : 3900;
+  window.setTimeout(finishIntro, introDuration);
+  introSkip?.addEventListener("click", finishIntro);
+}
+
+const openOffer = () => {
+  if (!offerDialog) return;
+  if (teaserTimer) window.clearTimeout(teaserTimer);
+  if (offerTeaser && !offerTeaser.hidden) {
+    offerTeaser.hidden = true;
+    flashOffer?.classList.add("isVisible");
+  }
+  lastOfferTrigger = document.activeElement;
+  offerDialog.hidden = false;
+  document.body.classList.add("offerOpen");
+  requestAnimationFrame(() => offerDialog.classList.add("isOpen"));
+  offerDialog.querySelector(".offerClose")?.focus();
+};
+
+const closeOffer = () => {
+  if (!offerDialog || offerDialog.hidden) return;
+  offerDialog.classList.remove("isOpen");
+  document.body.classList.remove("offerOpen");
+  window.setTimeout(() => {
+    offerDialog.hidden = true;
+    lastOfferTrigger?.focus?.();
+  }, 350);
+};
+
+flashOffer?.addEventListener("click", openOffer);
+offerTeaser?.addEventListener("click", openOffer);
+offerDialog?.querySelectorAll("[data-close-offer]").forEach((el) => {
+  el.addEventListener("click", closeOffer);
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeOffer();
+});
 
 // ==== Reveal ====
 const reveals = document.querySelectorAll(".reveal");
@@ -182,7 +269,6 @@ tabs.forEach((t) => {
 renderTab("bienestar");
 
 // Profundidad 3D sutil en dispositivos con puntero preciso.
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const canTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches
   && !prefersReducedMotion;
 
