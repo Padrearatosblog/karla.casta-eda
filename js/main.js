@@ -251,9 +251,11 @@ function renderTab(key) {
 
   tabImage.src = d.img;
   tabImage.alt = d.alt;
+  content.setAttribute("aria-labelledby", `tab-${key}`);
 }
 
 tabs.forEach((t) => {
+  t.id = `tab-${t.dataset.tab}`;
   t.addEventListener("click", () => {
     tabs.forEach((x) => {
       x.classList.remove("active");
@@ -262,6 +264,20 @@ tabs.forEach((t) => {
     t.classList.add("active");
     t.setAttribute("aria-selected", "true");
     renderTab(t.dataset.tab);
+  });
+
+  t.addEventListener("keydown", (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const tabList = [...tabs];
+    const currentIndex = tabList.indexOf(t);
+    const nextIndex = event.key === 'Home'
+      ? 0
+      : event.key === 'End'
+        ? tabList.length - 1
+        : (currentIndex + (event.key === 'ArrowRight' ? 1 : -1) + tabList.length) % tabList.length;
+    tabList[nextIndex].focus();
+    tabList[nextIndex].click();
   });
 });
 
