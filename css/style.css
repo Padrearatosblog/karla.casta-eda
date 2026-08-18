@@ -33,6 +33,273 @@
     img{ max-width: 100%; display:block; }
     button{ font: inherit; }
 
+    body.introActive,
+    body.offerOpen{ overflow: hidden; }
+
+    /* Intro de marca */
+    .brandIntro{
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,.96) 0 12%, rgba(245,231,222,.88) 42%, rgba(202,171,157,.94) 100%);
+      transition: opacity .8s ease, visibility .8s ease, transform .9s cubic-bezier(.22,.75,.22,1);
+    }
+
+    .brandIntro[hidden]{ display: none; }
+    .brandIntro.isLeaving{
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.035);
+      pointer-events: none;
+    }
+
+    .introGlow{
+      position: absolute;
+      width: min(76vw, 620px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.46);
+      box-shadow: 0 0 100px rgba(255,255,255,.44), inset 0 0 80px rgba(255,255,255,.28);
+      opacity: 0;
+      animation: introHalo 2.4s .2s ease-out forwards;
+    }
+
+    .introIdentity{
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      width: min(84vw, 440px);
+      text-align: center;
+    }
+
+    .introLogoWrap{
+      width: clamp(170px, 28vw, 270px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      opacity: 0;
+      filter: blur(12px);
+      transform: translateY(24px) scale(.72);
+      box-shadow: 0 30px 80px rgba(81,51,41,.16);
+      animation: introLogoReveal 1.8s .25s cubic-bezier(.2,.75,.2,1) forwards;
+    }
+
+    .introLogo{ width: 100%; height: 100%; object-fit: cover; }
+
+    .introLine{
+      width: 0;
+      height: 1px;
+      margin-top: 25px;
+      background: linear-gradient(90deg, transparent, rgba(91,56,42,.72), transparent);
+      animation: introLine 1s 1.25s ease forwards;
+    }
+
+    .introSignature{
+      margin: 13px 0 0;
+      color: #9a6674;
+      font-family: "Parisienne", "Snell Roundhand", "Segoe Script", cursive;
+      font-size: clamp(36px, 6.5vw, 56px);
+      font-weight: 400;
+      letter-spacing: -.025em;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: introSignature 1s 1.5s ease forwards;
+    }
+
+    .introTagline{
+      margin-top: 6px;
+      color: rgba(72,48,39,.68);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: introSignature .8s 2s ease forwards;
+    }
+
+    .introSkip{
+      position: absolute;
+      top: max(22px, env(safe-area-inset-top));
+      right: 24px;
+      z-index: 2;
+      padding: 9px 13px;
+      border: 1px solid rgba(76,50,40,.18);
+      border-radius: 999px;
+      color: rgba(76,50,40,.7);
+      background: rgba(255,255,255,.34);
+      cursor: pointer;
+    }
+
+    @keyframes introLogoReveal{
+      to{ opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+    }
+    @keyframes introHalo{
+      0%{ opacity: 0; transform: scale(.65); }
+      55%{ opacity: .85; }
+      100%{ opacity: .35; transform: scale(1); }
+    }
+    @keyframes introLine{ to{ width: min(230px, 60vw); } }
+    @keyframes introSignature{ to{ opacity: 1; transform: translateY(0); } }
+
+    /* Oferta flash */
+    .offerTeaser{
+      position: fixed;
+      inset: 0;
+      z-index: 850;
+      display: grid;
+      place-items: center;
+      padding: clamp(22px, 5vw, 54px);
+      border: 0;
+      background: rgba(54,35,29,.54);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .5s ease, visibility .5s ease;
+    }
+
+    .offerTeaser[hidden]{ display: none; }
+    .offerTeaser.isVisible{ opacity: 1; visibility: visible; }
+    .offerTeaser img{
+      grid-area: 1 / 1;
+      width: min(390px, 76vw);
+      max-height: 78vh;
+      border-radius: 24px;
+      object-fit: cover;
+      box-shadow: 0 35px 100px rgba(37,20,15,.48);
+      transform: translateY(24px) scale(.9);
+      opacity: 0;
+      transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .55s ease, border-radius .75s ease;
+    }
+    .offerTeaser.isVisible img{ transform: translateY(0) scale(1); opacity: 1; }
+    .offerTeaserLabel,
+    .offerTeaserHint{
+      position: absolute;
+      z-index: 2;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      opacity: 0;
+      transition: opacity .45s .45s ease;
+    }
+    .offerTeaserLabel{ top: clamp(28px, 6vh, 60px); font-size: 10px; font-weight: 850; }
+    .offerTeaserHint{ bottom: clamp(28px, 5vh, 52px); padding: 9px 14px; border: 1px solid rgba(255,255,255,.32); border-radius: 999px; background: rgba(50,29,22,.32); font-size: 9px; }
+    .offerTeaser.isVisible .offerTeaserLabel,
+    .offerTeaser.isVisible .offerTeaserHint{ opacity: .9; }
+    .offerTeaser.isCollapsing{
+      background: rgba(54,35,29,0);
+      backdrop-filter: blur(0);
+      pointer-events: none;
+    }
+    .offerTeaser.isCollapsing img{
+      opacity: 0;
+      border-radius: 17px;
+      transform: translate(calc(50vw - 130px), calc(50vh - 54px)) scale(.12);
+    }
+    .offerTeaser.isCollapsing .offerTeaserLabel,
+    .offerTeaser.isCollapsing .offerTeaserHint{ opacity: 0; transition-delay: 0s; }
+
+    .flashOffer{
+      position: fixed;
+      right: clamp(14px, 3vw, 34px);
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 218px;
+      padding: 11px 13px;
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 17px;
+      color: #fff;
+      background: linear-gradient(135deg, #4c2e24, #8d5737);
+      box-shadow: 0 16px 46px rgba(61,35,24,.34), 0 0 0 0 rgba(178,121,74,.42);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(22px) scale(.96);
+      pointer-events: none;
+      transition: opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .flashOffer.isVisible{
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      animation: offerBreathe 2.8s 1.2s ease-in-out infinite;
+    }
+
+    .flashOffer small,
+    .flashOffer strong{ display: block; text-align: left; }
+    .flashOffer small{ margin-bottom: 2px; font-size: 9px; letter-spacing: .08em; opacity: .76; text-transform: uppercase; }
+    .flashOffer strong{ font-size: 14px; letter-spacing: .01em; }
+    .flashOfferDot{ width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%; background: #f0c999; box-shadow: 0 0 0 6px rgba(240,201,153,.12); }
+    .flashOfferArrow{ margin-left: auto; font-size: 18px; }
+
+    @keyframes offerBreathe{
+      0%, 100%{ box-shadow: 0 16px 46px rgba(61,35,24,.34), 0 0 0 0 rgba(178,121,74,.38); }
+      50%{ box-shadow: 0 18px 52px rgba(61,35,24,.4), 0 0 0 9px rgba(178,121,74,0); transform: translateY(-3px) scale(1.015); }
+    }
+
+    .offerDialog[hidden]{ display: none; }
+    .offerDialog{ position: fixed; inset: 0; z-index: 900; display: grid; place-items: center; padding: 22px; }
+    .offerBackdrop{ position: absolute; inset: 0; background: rgba(37,24,19,.68); backdrop-filter: blur(10px); opacity: 0; transition: opacity .35s ease; }
+    .offerPanel{
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(260px, .9fr) minmax(300px, 1.1fr);
+      width: min(900px, 94vw);
+      max-height: min(760px, 92vh);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 28px;
+      background: #f8f0e6;
+      box-shadow: 0 38px 100px rgba(32,18,13,.42);
+      opacity: 0;
+      transform: translateY(24px) scale(.96);
+      transition: opacity .35s ease, transform .45s cubic-bezier(.2,.8,.2,1);
+    }
+    .offerDialog.isOpen .offerBackdrop,
+    .offerDialog.isOpen .offerPanel{ opacity: 1; }
+    .offerDialog.isOpen .offerPanel{ transform: translateY(0) scale(1); }
+    .offerVisual{ min-height: 590px; background: #eadbca; }
+    .offerVisual img{ width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .offerCopy{ display: flex; flex-direction: column; justify-content: center; padding: clamp(30px, 5vw, 64px); color: #39251e; }
+    .offerEyebrow{ color: #9b643f; font-size: 11px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+    .offerCopy h2{ margin: 12px 0 14px; font-family: Georgia, serif; font-size: clamp(34px, 4.2vw, 55px); line-height: .98; letter-spacing: -.04em; }
+    .offerCopy p{ margin: 0; color: rgba(57,37,30,.76); font-size: 17px; line-height: 1.6; }
+    .offerCopy ul{ display: grid; gap: 9px; margin: 22px 0 26px; padding: 0; list-style: none; color: rgba(57,37,30,.78); }
+    .offerCopy li::before{ content: "✓"; margin-right: 10px; color: #a86f4c; font-weight: 900; }
+    .offerWhatsapp{ align-self: flex-start; }
+    .offerCopy > small{ margin-top: 13px; color: rgba(57,37,30,.58); }
+    .offerClose{ position: absolute; top: 14px; right: 14px; z-index: 2; width: 40px; height: 40px; border: 1px solid rgba(74,45,34,.15); border-radius: 50%; color: #4a2d22; background: rgba(255,255,255,.82); font-size: 25px; line-height: 1; cursor: pointer; }
+
+    @media (max-width: 700px){
+      .offerTeaser{ padding: 18px; }
+      .offerTeaser img{ width: min(340px, 86vw); max-height: 76dvh; border-radius: 20px; }
+      .offerTeaser.isCollapsing img{ transform: translate(calc(50vw - 105px), calc(50dvh - 48px)) scale(.13); }
+      .flashOffer{ right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); min-width: 205px; }
+      .offerDialog{ align-items: end; padding: 0; }
+      .offerPanel{ grid-template-columns: 1fr; width: 100%; max-height: 94dvh; overflow-y: auto; border-radius: 25px 25px 0 0; }
+      .offerVisual{ min-height: 0; height: min(46dvh, 430px); }
+      .offerVisual img{ object-position: center 28%; }
+      .offerCopy{ padding: 26px 24px max(28px, env(safe-area-inset-bottom)); }
+      .offerCopy h2{ font-size: 36px; }
+      .offerCopy ul{ margin: 17px 0 20px; gap: 7px; }
+      .offerWhatsapp{ width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .introGlow, .introLogoWrap, .introLine, .introSignature, .introTagline, .flashOffer.isVisible{ animation: none; }
+      .offerTeaser, .offerTeaser img{ transition-duration: .01ms; }
+      .introLogoWrap, .introSignature, .introTagline{ opacity: 1; filter: none; transform: none; }
+      .introLine{ width: min(230px, 60vw); }
+    }
+
     .wrap{
       width: min(var(--max), 92vw);
       margin: 0 auto;
